@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESEC Group | Design-Build & Industrial Construction</title>
+  <meta name="description" content="ESEC Group delivers design-build and industrial construction projects across Egypt — on time, within budget, and to the highest safety standards." />
+
+  <!-- Google Fonts: Plus Jakarta Sans (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind config: brand colors, fonts, shadows -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              DEFAULT: '#002B49',
+              50:  '#E6EEF4',
+              100: '#C2D4E2',
+              700: '#00365C',
+              800: '#002B49',
+              900: '#001B2E',
+              950: '#00111D',
+            },
+            accent: {
+              DEFAULT: '#F07B20',
+              light:   '#F59A4F',
+              dark:    '#C2560A',
+            },
+            ink:   '#111827',
+            paper: '#F5F6F7',
+          },
+          fontFamily: {
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -8px rgba(15,23,42,.08)',
+            lift: '0 2px 4px rgba(15,23,42,.04), 0 20px 40px -12px rgba(0,43,73,.18)',
+          },
+          maxWidth: { site: '1200px' },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Image wrappers show a neutral navy tone while loading or if an image fails */
+    .img-frame { background: linear-gradient(135deg, #00365C, #001B2E); }
+    /* Thin orange rule used above section eyebrows */
+    .eyebrow::before {
+      content: ''; display: inline-block; width: 28px; height: 2px;
+      background: #F07B20; vertical-align: middle; margin-right: 12px;
+    }
+    /* Navbar background once the page is scrolled */
+    .nav-scrolled { background: rgba(255,255,255,.96); box-shadow: 0 1px 0 rgba(15,23,42,.06), 0 8px 24px -12px rgba(15,23,42,.12); backdrop-filter: saturate(180%) blur(8px); }
+    .nav-scrolled .nav-link  { color: #0F172A; }
+    .nav-scrolled .nav-logo  { color: #002B49; }
+    .nav-scrolled .nav-burger{ color: #002B49; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+
+<body class="bg-paper font-sans text-ink antialiased">
+
+  <!-- =========================================================
+       HEADER / NAVBAR
+       Transparent over the hero; turns solid white on scroll.
+  ========================================================== -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <nav class="mx-auto flex h-20 max-w-site items-center justify-between px-5 lg:px-8" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#top" class="nav-logo flex items-center gap-3 text-white transition-colors">
+        <span class="grid h-10 w-10 place-items-center rounded-lg bg-accent font-display text-lg font-extrabold text-navy">E</span>
+        <span class="font-display text-xl font-bold tracking-tight">ESEC <span class="font-medium opacity-80">Group</span></span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden items-center gap-9 lg:flex">
+        <li><a href="#about"    class="nav-link text-sm font-medium text-white/85 transition-colors hover:text-accent">About Us</a></li>
+        <li><a href="#services" class="nav-link text-sm font-medium text-white/85 transition-colors hover:text-accent">Services</a></li>
+        <li><a href="#projects" class="nav-link text-sm font-medium text-white/85 transition-colors hover:text-accent">Projects</a></li>
+        <li><a href="#why-us"   class="nav-link text-sm font-medium text-white/85 transition-colors hover:text-accent">Why Us</a></li>
+        <li><a href="#contact"  class="nav-link text-sm font-medium text-white/85 transition-colors hover:text-accent">Contact Us</a></li>
+      </ul>
+
+      <!-- Desktop CTA -->
+      <a href="#contact" class="hidden rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-navy shadow-soft transition hover:-translate-y-0.5 hover:bg-accent-light lg:inline-flex">
+        Get a Quote
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="nav-burger -mr-2 p-2 text-white lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu" class="hidden border-t border-gray-100 bg-white px-5 pb-6 pt-2 shadow-lift lg:hidden">
+      <ul class="flex flex-col divide-y divide-gray-100">
+        <li><a href="#about"    class="mobile-link block py-3.5 font-medium text-ink">About Us</a></li>
+        <li><a href="#services" class="mobile-link block py-3.5 font-medium text-ink">Services</a></li>
+        <li><a href="#projects" class="mobile-link block py-3.5 font-medium text-ink">Projects</a></li>
+        <li><a href="#why-us"   class="mobile-link block py-3.5 font-medium text-ink">Why Us</a></li>
+        <li><a href="#contact"  class="mobile-link block py-3.5 font-medium text-ink">Contact Us</a></li>
+      </ul>
+      <a href="#contact" class="mobile-link mt-4 block rounded-lg bg-navy py-3 text-center font-semibold text-white">Get a Quote</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =========================================================
+         HERO
+         Replace the background image URL with a high-res corporate photo.
+    ========================================================== -->
+    <section class="relative isolate overflow-hidden bg-navy-900">
+      <!-- Hero image placeholder -->
+      <div class="img-frame absolute inset-0 -z-20">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=80"
+             alt="Large-scale construction site with cranes at dusk"
+             class="h-full w-full object-cover opacity-40" />
+      </div>
+      <!-- Navy gradient overlay for text legibility -->
+      <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-900/90 to-navy-800/40"></div>
+
+      <div class="mx-auto max-w-site px-5 pb-24 pt-40 lg:px-8 lg:pb-36 lg:pt-52">
+        <div class="max-w-3xl">
+          <p class="eyebrow mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Design-Build &amp; Industrial Construction</p>
+          <h1 class="font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Engineering the spaces where industry and ambition <span class="text-accent">take shape.</span>
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
+            ESEC Group delivers end-to-end construction — from concept and design through to handover — for industrial, commercial and residential clients across Egypt. One accountable partner, on time, within budget, and built to the highest safety standards.
+          </p>
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a href="#services" class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 font-semibold text-navy shadow-lift transition hover:-translate-y-0.5 hover:bg-accent-light">
+              Explore Services
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact" class="inline-flex items-center justify-center rounded-lg border border-white/30 px-7 py-3.5 font-semibold text-white transition hover:border-white hover:bg-white/10">
+              Contact Sales
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STATS / HIGHLIGHTS BANNER
+         NOTE: figures are placeholders — replace with ESEC's verified numbers.
+    ========================================================== -->
+    <section class="relative z-10 -mt-14 px-5 lg:px-8" aria-label="Company highlights">
+      <div class="mx-auto grid max-w-site grid-cols-2 overflow-hidden rounded-2xl bg-white shadow-lift lg:grid-cols-4">
+        <div class="border-b border-r border-gray-100 p-7 text-center lg:border-b-0 lg:p-9">
+          <p class="font-display text-3xl font-bold text-navy lg:text-4xl">15<span class="text-accent">+</span></p>
+          <p class="mt-2 text-sm font-medium text-gray-500">Years of Experience</p>
+        </div>
+        <div class="border-b border-gray-100 p-7 text-center lg:border-b-0 lg:border-r lg:p-9">
+          <p class="font-display text-3xl font-bold text-navy lg:text-4xl">250<span class="text-accent">+</span></p>
+          <p class="mt-2 text-sm font-medium text-gray-500">Completed Projects</p>
+        </div>
+        <div class="border-r border-gray-100 p-7 text-center lg:p-9">
+          <p class="font-display text-3xl font-bold text-navy lg:text-4xl">120<span class="text-accent">+</span></p>
+          <p class="mt-2 text-sm font-medium text-gray-500">Corporate Clients</p>
+        </div>
+        <div class="p-7 text-center lg:p-9">
+          <p class="font-display text-3xl font-bold text-navy lg:text-4xl">Zero<span class="text-accent">.</span></p>
+          <p class="mt-2 text-sm font-medium text-gray-500">Harm Safety Culture</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ABOUT US / COMPANY OVERVIEW
+    ========================================================== -->
+    <section id="about" class="scroll-mt-20 py-24 lg:py-32">
+      <div class="mx-auto grid max-w-site items-center gap-14 px-5 lg:grid-cols-2 lg:gap-20 lg:px-8">
+        <!-- Image composition -->
+        <div class="relative">
+          <div class="img-frame aspect-[4/5] overflow-hidden rounded-2xl shadow-lift">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80"
+                 alt="Site engineer reviewing progress on a construction project" class="h-full w-full object-cover" loading="lazy" />
+          </div>
+          <!-- Floating credential card -->
+          <div class="absolute -bottom-8 right-4 max-w-[260px] rounded-xl bg-navy p-6 text-white shadow-lift sm:-right-6">
+            <p class="font-display text-sm font-semibold uppercase tracking-wider text-accent">Headquartered in</p>
+            <p class="mt-1 font-display text-xl font-bold">Maadi, Cairo</p>
+            <p class="mt-2 text-sm text-gray-300">Serving industrial and commercial clients nationwide.</p>
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div>
+          <p class="eyebrow mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent-dark">About ESEC Group</p>
+          <h2 class="font-display text-3xl font-bold leading-tight tracking-tight text-navy sm:text-4xl">
+            Building dreams together — with discipline, accountability and craft.
+          </h2>
+          <p class="mt-6 leading-relaxed text-gray-600">
+            ESEC Group is a construction company specialising in design-build and industrial construction. We bring design, engineering and execution under one roof, giving clients a single point of responsibility from the first sketch to final handover.
+          </p>
+          <p class="mt-4 leading-relaxed text-gray-600">
+            Our experienced professionals pair high-quality craftsmanship with rigorous attention to detail, and we hold ourselves to three non-negotiables on every project: on schedule, within budget, and safe.
+          </p>
+
+          <!-- Vision / Mission -->
+          <div class="mt-10 grid gap-5 sm:grid-cols-2">
+            <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-soft">
+              <div class="mb-3 grid h-10 w-10 place-items-center rounded-lg bg-navy-50 text-navy">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <h3 class="font-display font-semibold text-navy">Our Vision</h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-600">To be the region's most trusted partner for complex industrial and commercial builds.</p>
+            </div>
+            <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-soft">
+              <div class="mb-3 grid h-10 w-10 place-items-center rounded-lg bg-navy-50 text-navy">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
+              </div>
+              <h3 class="font-display font-semibold text-navy">Our Mission</h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-600">Comprehensive building solutions tailored to each client, delivered with uncompromising quality.</p>
+            </div>
+          </div>
+
+          <!-- Chairman's word teaser -->
+          <blockquote class="mt-8 border-l-2 border-accent pl-5">
+            <p class="italic text-gray-700">"Every structure we deliver carries our name. That is why we never compromise on quality or safety."</p>
+            <footer class="mt-2 text-sm font-semibold text-navy">— Chairman, ESEC Group</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CORE SERVICES / SECTORS
+    ========================================================== -->
+    <section id="services" class="scroll-mt-20 bg-white py-24 lg:py-32">
+      <div class="mx-auto max-w-site px-5 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="eyebrow mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent-dark">Core Services</p>
+          <h2 class="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">Complete construction capability, one accountable partner</h2>
+          <p class="mt-5 text-gray-600">From feasibility to final handover, we cover every phase of delivery across the sectors that power the economy.</p>
+        </div>
+
+        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Service card template: copy/paste to add more -->
+          <article class="group rounded-2xl border border-gray-200 bg-paper p-8 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-white hover:shadow-lift">
+            <div class="mb-6 grid h-14 w-14 place-items-center rounded-xl bg-navy text-accent transition group-hover:bg-accent group-hover:text-navy">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M6 20V9l6-5 6 5v11M10 20v-5h4v5"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Design-Build Construction</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Integrated design and construction under a single contract — faster timelines, fewer handoffs, and clear accountability.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-gray-200 bg-paper p-8 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-white hover:shadow-lift">
+            <div class="mb-6 grid h-14 w-14 place-items-center rounded-xl bg-navy text-accent transition group-hover:bg-accent group-hover:text-navy">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 20h18M4 20V10l5 3V10l5 3V10l5 3v7M17 6V3h3v10"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Industrial Construction</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Factories, warehouses and production facilities engineered for heavy loads, efficient workflows and long service life.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-gray-200 bg-paper p-8 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-white hover:shadow-lift">
+            <div class="mb-6 grid h-14 w-14 place-items-center rounded-xl bg-navy text-accent transition group-hover:bg-accent group-hover:text-navy">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21V5l8-2v18M12 21h8V9l-8-2M8 8h.01M8 12h.01M8 16h.01M16 12h.01M16 16h.01"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Commercial Buildings</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Offices, retail and mixed-use developments with modern façades, efficient MEP systems and premium finishes.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-gray-200 bg-paper p-8 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-white hover:shadow-lift">
+            <div class="mb-6 grid h-14 w-14 place-items-center rounded-xl bg-navy text-accent transition group-hover:bg-accent group-hover:text-navy">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 11l9-7 9 7M5 9.5V20h14V9.5M9 20v-6h6v6"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Residential Developments</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Apartment blocks and gated communities delivered with landscaping, amenities and lasting build quality.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-gray-200 bg-paper p-8 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-white hover:shadow-lift">
+            <div class="mb-6 grid h-14 w-14 place-items-center rounded-xl bg-navy text-accent transition group-hover:bg-accent group-hover:text-navy">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4zM4 9h16M9 9v11M14 13h3M14 16h3"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Engineering &amp; Planning</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Structural design, feasibility studies, value engineering and permitting that de-risk projects before ground is broken.</p>
+          </article>
+
+          <article class="group rounded-2xl border border-gray-200 bg-paper p-8 transition duration-300 hover:-translate-y-1.5 hover:border-transparent hover:bg-white hover:shadow-lift">
+            <div class="mb-6 grid h-14 w-14 place-items-center rounded-xl bg-navy text-accent transition group-hover:bg-accent group-hover:text-navy">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 13l2 2 4-4"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-navy">Project Management</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-600">Dedicated managers controlling cost, schedule and quality, with transparent reporting at every milestone.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WHY CHOOSE US / STRENGTHS
+    ========================================================== -->
+    <section id="why-us" class="scroll-mt-20 relative overflow-hidden bg-navy py-24 text-white lg:py-32">
+      <!-- Decorative blueprint grid -->
+      <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:48px 48px;"></div>
+
+      <div class="relative mx-auto max-w-site px-5 lg:px-8">
+        <div class="grid gap-6 lg:grid-cols-2 lg:items-end">
+          <div>
+            <p class="eyebrow mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">Why ESEC Group</p>
+            <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">Four pillars behind every project we deliver</h2>
+          </div>
+          <p class="text-gray-300 lg:pb-1">Clients choose us because we treat their investment as our own — with clear communication from kick-off until the job is done.</p>
+        </div>
+
+        <div class="mt-16 grid gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="bg-navy p-8 transition hover:bg-navy-700">
+            <p class="font-display text-sm font-bold text-accent">01</p>
+            <h3 class="mt-4 font-display text-lg font-semibold">Quality Assurance</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-300">Structured inspection and testing plans so every element meets specification the first time.</p>
+          </div>
+          <div class="bg-navy p-8 transition hover:bg-navy-700">
+            <p class="font-display text-sm font-bold text-accent">02</p>
+            <h3 class="mt-4 font-display text-lg font-semibold">Experienced Engineering</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-300">Seasoned engineers and site teams who have solved complex structural and logistical challenges.</p>
+          </div>
+          <div class="bg-navy p-8 transition hover:bg-navy-700">
+            <p class="font-display text-sm font-bold text-accent">03</p>
+            <h3 class="mt-4 font-display text-lg font-semibold">Safety &amp; Compliance</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-300">The highest safety standards on every site, backed by training, audits and full regulatory compliance.</p>
+          </div>
+          <div class="bg-navy p-8 transition hover:bg-navy-700">
+            <p class="font-display text-sm font-bold text-accent">04</p>
+            <h3 class="mt-4 font-display text-lg font-semibold">Timely Delivery</h3>
+            <p class="mt-3 text-sm leading-relaxed text-gray-300">Disciplined scheduling and cost control to hand over on time and within the agreed budget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         MEDIA / PROJECT SHOWCASE
+         Swap Unsplash URLs for real ESEC project photography.
+    ========================================================== -->
+    <section id="projects" class="scroll-mt-20 py-24 lg:py-32">
+      <div class="mx-auto max-w-site px-5 lg:px-8">
+        <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div class="max-w-xl">
+            <p class="eyebrow mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent-dark">Our Projects</p>
+            <h2 class="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">Inspiring projects that redefine spaces</h2>
+          </div>
+          <a href="#contact" class="inline-flex items-center gap-2 font-semibold text-navy transition hover:text-accent-dark">
+            Discuss your project
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <!-- Bento-style gallery -->
+        <div class="mt-14 grid auto-rows-[240px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Large feature tile -->
+          <figure class="img-frame group relative overflow-hidden rounded-2xl sm:col-span-2 sm:row-span-2">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80" alt="Modern glass-façade commercial tower" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent p-6 text-white">
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">Commercial</span>
+              <p class="mt-1 font-display text-xl font-semibold">Corporate Office Tower</p>
+            </figcaption>
+          </figure>
+
+          <figure class="img-frame group relative overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" alt="Architectural plans on a desk" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent p-5 text-white">
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">Design</span>
+              <p class="mt-1 font-display font-semibold">Design-Build Planning</p>
+            </figcaption>
+          </figure>
+
+          <figure class="img-frame group relative overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Engineer working in an industrial facility" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent p-5 text-white">
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">Industrial</span>
+              <p class="mt-1 font-display font-semibold">Manufacturing Facility</p>
+            </figcaption>
+          </figure>
+
+          <figure class="img-frame group relative overflow-hidden rounded-2xl sm:col-span-2">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1400&q=80" alt="Modern residential apartment complex" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent p-5 text-white">
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">Residential</span>
+              <p class="mt-1 font-display font-semibold">Residential Community</p>
+            </figcaption>
+          </figure>
+
+          <figure class="img-frame group relative overflow-hidden rounded-2xl sm:col-span-2">
+            <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=80" alt="Contemporary white architectural structure" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent p-5 text-white">
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">Mixed-Use</span>
+              <p class="mt-1 font-display font-semibold">Landmark Mixed-Use Complex</p>
+            </figcaption>
+          </figure>
+
+          <figure class="img-frame group relative overflow-hidden rounded-2xl sm:col-span-2">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=80" alt="Modern office interior fit-out" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/90 to-transparent p-5 text-white">
+              <span class="text-xs font-semibold uppercase tracking-wider text-accent">Fit-Out</span>
+              <p class="mt-1 font-display font-semibold">Executive Office Interiors</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CTA STRIP
+    ========================================================== -->
+    <section class="px-5 lg:px-8">
+      <div class="mx-auto flex max-w-site flex-col items-start justify-between gap-6 rounded-2xl bg-gradient-to-r from-accent-dark to-accent p-10 shadow-lift md:flex-row md:items-center lg:p-12">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-navy sm:text-3xl">Planning your next facility?</h2>
+          <p class="mt-2 text-navy/80">Get a free, no-obligation estimate from our engineering team.</p>
+        </div>
+        <a href="#contact" class="shrink-0 rounded-lg bg-navy px-7 py-3.5 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-navy-900">Get a Free Estimate</a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         LEAD CAPTURE / CONTACT
+         Front-end only: connect the form "action" to your backend,
+         CRM or a form service (e.g. Formspree, HubSpot) before launch.
+    ========================================================== -->
+    <section id="contact" class="scroll-mt-20 py-24 lg:py-32">
+      <div class="mx-auto max-w-site px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-5 lg:gap-14">
+
+          <!-- Contact details -->
+          <div class="lg:col-span-2">
+            <p class="eyebrow mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent-dark">Contact Us</p>
+            <h2 class="font-display text-3xl font-bold tracking-tight text-navy sm:text-4xl">Let's talk about your project</h2>
+            <p class="mt-5 leading-relaxed text-gray-600">We stay in constant communication with our clients until the job is done. Share your requirements and a member of our team will respond within one business day.</p>
+
+            <ul class="mt-10 space-y-6">
+              <li class="flex gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-navy text-accent">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Email</p>
+                  <!-- Placeholder: replace with ESEC's official address -->
+                  <a href="mailto:info@esecgroup.co" class="text-gray-600 hover:text-accent-dark">info@esecgroup.co</a>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-navy text-accent">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.3a1 1 0 01.95.68l1.2 3.6a1 1 0 01-.5 1.2l-1.8.9a11 11 0 005.5 5.5l.9-1.8a1 1 0 011.2-.5l3.6 1.2a1 1 0 01.68.95V19a2 2 0 01-2 2h-1C9.7 21 3 14.3 3 6V5z"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Phone</p>
+                  <a href="tel:+20225199221" class="block text-gray-600 hover:text-accent-dark">+20 2 2519 9221</a>
+                  <a href="tel:+201093193115" class="block text-gray-600 hover:text-accent-dark">+20 109 319 3115</a>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-navy text-accent">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-12a7 7 0 1114 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Office</p>
+                  <p class="text-gray-600">Maadi, Cairo, Egypt</p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-navy text-accent">
+                  <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-semibold text-navy">Working Hours</p>
+                  <p class="text-gray-600">Mon – Fri: 9:00 AM – 5:00 PM</p>
+                  <p class="text-gray-600">Sat – Sun: Closed</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Form -->
+          <div class="lg:col-span-3">
+            <form id="quoteForm" action="#" method="POST" class="rounded-2xl border border-gray-200 bg-white p-7 shadow-lift sm:p-10" novalidate>
+              <h3 class="font-display text-xl font-semibold text-navy">Request a Quote</h3>
+              <p class="mt-1 text-sm text-gray-500">Fields marked <span class="text-accent-dark">*</span> are required.</p>
+
+              <div class="mt-8 grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label for="name" class="mb-2 block text-sm font-medium text-ink">Full Name <span class="text-accent-dark">*</span></label>
+                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="John Smith"
+                         class="w-full rounded-lg border border-gray-300 bg-paper px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-navy focus:bg-white focus:ring-4 focus:ring-navy/10" />
+                </div>
+                <div>
+                  <label for="email" class="mb-2 block text-sm font-medium text-ink">Email Address <span class="text-accent-dark">*</span></label>
+                  <input id="email" name="email" type="email" required autocomplete="email" placeholder="name@company.com"
+                         class="w-full rounded-lg border border-gray-300 bg-paper px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-navy focus:bg-white focus:ring-4 focus:ring-navy/10" />
+                </div>
+                <div>
+                  <label for="phone" class="mb-2 block text-sm font-medium text-ink">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+20 1XX XXX XXXX"
+                         class="w-full rounded-lg border border-gray-300 bg-paper px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-navy focus:bg-white focus:ring-4 focus:ring-navy/10" />
+                </div>
+                <div>
+                  <label for="service" class="mb-2 block text-sm font-medium text-ink">Service Required <span class="text-accent-dark">*</span></label>
+                  <select id="service" name="service" required
+                          class="w-full appearance-none rounded-lg border border-gray-300 bg-paper bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%236b7280%22 stroke-width=%222%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-[length:18px] bg-[right_14px_center] bg-no-repeat px-4 py-3 pr-10 text-sm outline-none transition focus:border-navy focus:bg-white focus:ring-4 focus:ring-navy/10">
+                    <option value="" disabled selected>Select a service</option>
+                    <option>Design-Build Construction</option>
+                    <option>Industrial Construction</option>
+                    <option>Commercial Buildings</option>
+                    <option>Residential Developments</option>
+                    <option>Engineering &amp; Planning</option>
+                    <option>Project Management</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="sm:col-span-2">
+                  <label for="message" class="mb-2 block text-sm font-medium text-ink">Project Details <span class="text-accent-dark">*</span></label>
+                  <textarea id="message" name="message" rows="5" required placeholder="Tell us about the scope, location and timeline of your project..."
+                            class="w-full resize-y rounded-lg border border-gray-300 bg-paper px-4 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-navy focus:bg-white focus:ring-4 focus:ring-navy/10"></textarea>
+                </div>
+              </div>
+
+              <div class="mt-7 flex flex-col-reverse gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <p class="text-xs text-gray-500">By submitting, you agree to our <a href="#" class="underline hover:text-navy">Privacy Policy</a>.</p>
+                <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-navy px-7 py-3.5 font-semibold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-navy-900">
+                  Send Request
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+
+              <!-- Success message (shown by the script below) -->
+              <div id="formSuccess" class="mt-6 hidden rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800" role="status">
+                Thank you — your request has been received. Our team will be in touch within one business day.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="bg-navy-950 text-gray-400">
+    <div class="mx-auto max-w-site px-5 pb-10 pt-20 lg:px-8">
+      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
+        <!-- Brand -->
+        <div class="lg:col-span-4">
+          <a href="#top" class="flex items-center gap-3 text-white">
+            <span class="grid h-10 w-10 place-items-center rounded-lg bg-accent font-display text-lg font-extrabold text-navy">E</span>
+            <span class="font-display text-xl font-bold">ESEC <span class="font-medium opacity-80">Group</span></span>
+          </a>
+          <p class="mt-5 max-w-xs text-sm leading-relaxed">Design-build and industrial construction delivered on time, within budget, and to the highest safety standards.</p>
+          <!-- Social icons -->
+          <div class="mt-6 flex gap-3">
+            <a href="https://www.linkedin.com/company/esec-group-construction/" target="_blank" rel="noopener" aria-label="LinkedIn" class="grid h-10 w-10 place-items-center rounded-lg bg-white/5 transition hover:bg-accent hover:text-navy">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.84 0-2.12 1.43-2.12 2.9V21H9z"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook" class="grid h-10 w-10 place-items-center rounded-lg bg-white/5 transition hover:bg-accent hover:text-navy">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="grid h-10 w-10 place-items-center rounded-lg bg-white/5 transition hover:bg-accent hover:text-navy">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+            </a>
+            <a href="#" aria-label="X (Twitter)" class="grid h-10 w-10 place-items-center rounded-lg bg-white/5 transition hover:bg-accent hover:text-navy">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.7 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L1.7 3h6.4l4.4 5.9zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sitemap -->
+        <div class="lg:col-span-2">
+          <h4 class="font-display text-sm font-semibold uppercase tracking-wider text-white">Company</h4>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li><a href="#about"    class="transition hover:text-accent">About Us</a></li>
+            <li><a href="#about"    class="transition hover:text-accent">Chairman's Word</a></li>
+            <li><a href="#projects" class="transition hover:text-accent">Our Projects</a></li>
+            <li><a href="#why-us"   class="transition hover:text-accent">Why Us</a></li>
+            <li><a href="#contact"  class="transition hover:text-accent">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3">
+          <h4 class="font-display text-sm font-semibold uppercase tracking-wider text-white">Services</h4>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li><a href="#services" class="transition hover:text-accent">Design-Build Construction</a></li>
+            <li><a href="#services" class="transition hover:text-accent">Industrial Construction</a></li>
+            <li><a href="#services" class="transition hover:text-accent">Commercial Buildings</a></li>
+            <li><a href="#services" class="transition hover:text-accent">Engineering &amp; Planning</a></li>
+            <li><a href="#services" class="transition hover:text-accent">Project Management</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-3">
+          <h4 class="font-display text-sm font-semibold uppercase tracking-wider text-white">Get in Touch</h4>
+          <ul class="mt-5 space-y-3 text-sm">
+            <li>Maadi, Cairo, Egypt</li>
+            <li><a href="tel:+20225199221" class="transition hover:text-accent">+20 2 2519 9221</a></li>
+            <li><a href="mailto:info@esecgroup.co" class="transition hover:text-accent">info@esecgroup.co</a></li>
+            <li>Mon – Fri, 9:00 AM – 5:00 PM</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm sm:flex-row sm:items-center sm:justify-between">
+        <p>&copy; <span id="year">2026</span> ESEC Group. All rights reserved.</p>
+        <ul class="flex flex-wrap gap-6">
+          <li><a href="https://esecgroup.co/privacy-policy" class="transition hover:text-accent">Privacy Policy</a></li>
+          <li><a href="https://esecgroup.co/terms-and-conditions" class="transition hover:text-accent">Terms &amp; Conditions</a></li>
+          <li><a href="#" class="transition hover:text-accent">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       SCRIPTS: navbar on scroll, mobile menu, demo form handling
+  ========================================================== -->
+  <script>
+    // Solid navbar after scrolling past the top of the hero
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => navbar.classList.toggle('nav-scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('hidden') === false;
+      menuBtn.setAttribute('aria-expanded', open);
+      navbar.classList.toggle('nav-scrolled', open || window.scrollY > 40);
+    });
+    document.querySelectorAll('.mobile-link').forEach(link =>
+      link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false'); onScroll(); })
+    );
+
+    // Demo form handling — replace with a real submission (fetch to your endpoint)
+    const form = document.getElementById('quoteForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      document.getElementById('formSuccess').classList.remove('hidden');
+      form.reset();
+    });
+
+    // Keep copyright year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
